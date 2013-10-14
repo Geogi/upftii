@@ -13,6 +13,12 @@ install-sh
 missing
 .deps/
 stamp-h1
+compile
 
-# Intermediate files
+# Binaries
 *.o
+upftii
+
+# Emacs backups and autosaves
+\#*#
+*~
