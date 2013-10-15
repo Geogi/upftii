@@ -26,9 +26,13 @@ class upftii_Fight {
   const char *leftfile = "res/left.png";
   const char *rightfile = "res/right.png";
   const char *bgfile = "res/bg.png";
-  SDL_Rect lr, rr;
   SDL_Texture *left, *right, *bg;
+  void (*updateCallback)(upftii_Fight*);
 public:
+  SDL_Rect lr, rr;
+  void startright();
+  void startleft();
+  void stopmove();
   void init(upftii_Game *game);
   void update(upftii_Game *game);
 };

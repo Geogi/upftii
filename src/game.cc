@@ -29,7 +29,7 @@ void upftii_Game::init() {
   this->win = SDL_CreateWindow(this->name, 100, 100, this->WWIDTH, this->WHEIGHT, SDL_WINDOW_SHOWN);
   this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);
   
-  fight.init(this);
+  this->fight.init(this);
 }
 
 void upftii_Game::finalize() {
@@ -44,10 +44,19 @@ int upftii_Game::quit() {
 
 void upftii_Game::update() {
   while (SDL_PollEvent(this->lastev)) {
-    if (this->lastev->type == SDL_QUIT) this->status = 1;
-    if (this->lastev->type == SDL_KEYDOWN) {
+    switch (this->lastev->type) {
+    case SDL_QUIT: this->status = 1; break;
+    case SDL_KEYDOWN:
       switch(this->lastev->key.keysym.sym) {
       case SDLK_ESCAPE: this->status = 1; break;
+      case SDLK_RIGHT: this->fight.startright(); break;
+      case SDLK_LEFT: this->fight.startleft(); break;
+      }
+      break;
+    case SDL_KEYUP:
+      switch(this->lastev->key.keysym.sym) {
+      case SDLK_RIGHT:
+      case SDLK_LEFT: this->fight.stopmove(); break;
       }
     }
   }

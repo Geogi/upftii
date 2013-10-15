@@ -37,11 +37,37 @@ void upftii_Fight::init(upftii_Game *game) {
   this->rr.y = game->WHEIGHT - rh - 100;
   this->rr.w = rw;
   this->rr.h = rh;
+
+  this->stopmove();
   this->update(game);
 }
 
 void upftii_Fight::update(upftii_Game *game) {
+  this->updateCallback(this);
   SDL_RenderCopy(game->ren, this->bg, NULL, NULL);
   SDL_RenderCopy(game->ren, this->left, NULL, &lr);
   SDL_RenderCopy(game->ren, this->right, NULL, &rr);
+}
+
+void goright(upftii_Fight *fight) {
+  fight->lr.x++;
+}
+
+void upftii_Fight::startright() {
+  this->updateCallback = &goright;
+}
+
+void goleft(upftii_Fight *fight) {
+  fight->lr.x--;
+}
+
+void upftii_Fight::startleft() {
+  this->updateCallback = &goleft;
+}
+
+void nothing(upftii_Fight *fight) {
+}
+
+void upftii_Fight::stopmove() {
+  this->updateCallback = &nothing;
 }
