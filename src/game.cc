@@ -30,6 +30,7 @@ void upftii_Game::init() {
   win = SDL_CreateWindow(name, 100, 100, WWIDTH, WHEIGHT, SDL_WINDOW_SHOWN);
   ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
   
+  lastev = new SDL_Event();
   fight = new upftii_Fight(this);
 }
 

@@ -29,12 +29,13 @@ upftii_Fighter::upftii_Fighter(upftii_Fight *fight,
   // only one frame allowed
   sprite = png2tex(spritefile, fight->game->ren);
 
-  int w, h;
-  SDL_QueryTexture(sprite, NULL, NULL, &w, &h);
-  pos->x = onleft ? 50 : fight->game->WWIDTH - w - 50;
-  pos->y = fight->game->WHEIGHT - h - 100;
-  pos->w = NULL;
-  pos->h = NULL;
+  int spr_w, spr_h;
+  SDL_QueryTexture(sprite, NULL, NULL, &spr_w, &spr_h);
+  pos = new SDL_Rect();
+  pos->x = onleft ? 50 : fight->game->WWIDTH - spr_w - 50;
+  pos->y = fight->game->WHEIGHT - spr_h - 100;
+  pos->w = spr_w;
+  pos->h = spr_h;
 }
 
 void upftii_Fighter::move(bool toleft) {
@@ -46,5 +47,5 @@ void upftii_Fighter::stop() {
 }
 
 void upftii_Fighter::update() {
-  SDL_RenderCopy(fight->game->ren, sprite, NULL, NULL);
+  SDL_RenderCopy(fight->game->ren, sprite, NULL, pos);
 }
