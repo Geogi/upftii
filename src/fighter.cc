@@ -39,13 +39,21 @@ upftii_Fighter::upftii_Fighter(upftii_Fight *fight,
 }
 
 void upftii_Fighter::move(bool toleft) {
-  //TODO
+  action = toleft ? MOVE_LEFT : MOVE_RIGHT;
 }
 
 void upftii_Fighter::stop() {
-  //TODO
+  if (action == MOVE_LEFT || action == MOVE_RIGHT)
+    action = NONE;
 }
 
 void upftii_Fighter::update() {
+  // update fighter
+  switch(action) {
+  case MOVE_LEFT: pos->x--; break;
+  case MOVE_RIGHT: pos->x++; break;
+  }
+
+  // render
   SDL_RenderCopy(fight->game->ren, sprite, NULL, pos);
 }

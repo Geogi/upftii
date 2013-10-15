@@ -22,9 +22,16 @@
 
 class upftii_Fight;
 
+enum upftii_Action {
+  NONE,
+  MOVE_LEFT,
+  MOVE_RIGHT
+};
+
 class upftii_Fighter {
   SDL_Texture *sprite;
   SDL_Rect *pos;
+  upftii_Action action = NONE; 
 public:
   upftii_Fighter(upftii_Fight *fight, const char *spritefile, bool onleft);
 

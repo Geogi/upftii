@@ -51,8 +51,8 @@ void upftii_Game::update() {
     case SDL_KEYDOWN:
       switch(lastev->key.keysym.sym) {
       case SDLK_ESCAPE: playing = false; break;
-      case SDLK_RIGHT: fight->left->move(true); break;
-      case SDLK_LEFT: fight->left->move(false); break;
+      case SDLK_LEFT: fight->left->move(true); break;
+      case SDLK_RIGHT: fight->left->move(false); break;
       }
       break;
     case SDL_KEYUP:
