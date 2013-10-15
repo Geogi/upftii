@@ -15,14 +15,15 @@
    You should have received a copy of the GNU General Public License
    along with UPFTII.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "game.h"
+#include "game.hh"
 
 int main(int argc, char **argv){
   upftii_Game game;
   game.init();
 
-  //TODO game loop
-  SDL_Delay(2000);
+  while(!game.quit()) {
+    game.update();
+  }
 
   game.finalize();
   return 0;

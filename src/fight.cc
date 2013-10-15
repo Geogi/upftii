@@ -17,30 +17,31 @@
 
 #include <SDL2/SDL.h>
 
-#include "fight.h"
-#include "game.h"
-#include "texutils.h"
+#include "fight.hh"
+#include "game.hh"
+#include "texutils.hh"
 
 void upftii_Fight::init(upftii_Game *game) {
-  SDL_Texture *left = png2tex(this->leftfile, game->ren);
-  SDL_Texture *right = png2tex(this->rightfile, game->ren);
-  SDL_Texture *bg = png2tex(this->bgfile, game->ren);
+  left = png2tex(this->leftfile, game->ren);
+  right = png2tex(this->rightfile, game->ren);
+  bg = png2tex(this->bgfile, game->ren);
   int lh, lw, rh, rw;
   SDL_QueryTexture(left, NULL, NULL, &lw, &lh);
   SDL_QueryTexture(right, NULL, NULL, &rw, &rh);
   
-  SDL_Rect lr, rr;
-  lr.x = 50;
-  lr.y = game->WHEIGHT - lh - 100;
-  lr.w = lw;
-  lr.h = lh;
-  rr.x = game->WWIDTH - rw - 50;
-  rr.y = game->WHEIGHT - rh - 100;
-  rr.w = rw;
-  rr.h = rh;
-  SDL_RenderClear(game->ren);
-  SDL_RenderCopy(game->ren, bg, NULL, NULL);
-  SDL_RenderCopy(game->ren, left, NULL, &lr);
-  SDL_RenderCopy(game->ren, right, NULL, &rr);
-  SDL_RenderPresent(game->ren);
+  this->lr.x = 50;
+  this->lr.y = game->WHEIGHT - lh - 100;
+  this->lr.w = lw;
+  this->lr.h = lh;
+  this->rr.x = game->WWIDTH - rw - 50;
+  this->rr.y = game->WHEIGHT - rh - 100;
+  this->rr.w = rw;
+  this->rr.h = rh;
+  this->update(game);
+}
+
+void upftii_Fight::update(upftii_Game *game) {
+  SDL_RenderCopy(game->ren, this->bg, NULL, NULL);
+  SDL_RenderCopy(game->ren, this->left, NULL, &lr);
+  SDL_RenderCopy(game->ren, this->right, NULL, &rr);
 }

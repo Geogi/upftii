@@ -18,20 +18,39 @@
 #include <SDL2/SDL.h>
 #include <wand/MagickWand.h>
 
-#include "game.h"
-#include "fight.h"
+#include "game.hh"
+#include "fight.hh"
 
 void upftii_Game::init() {
+  this->status = 1;
+
   SDL_Init(SDL_INIT_EVERYTHING);
   MagickWandGenesis();
   this->win = SDL_CreateWindow(this->name, 100, 100, this->WWIDTH, this->WHEIGHT, SDL_WINDOW_SHOWN);
   this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);
   
-  upftii_Fight fight;
   fight.init(this);
 }
 
 void upftii_Game::finalize() {
   SDL_Quit();
   MagickWandTerminus();
+}
+
+int upftii_Game::quit() {
+  return this->status;
+}
+
+void upftii_Game::update() {
+  while (SDL_PollEvent(this->lastev)) {
+    if (this->lastev->type == SDL_QUIT) this->status = 0;
+    if (this->lastev->type == SDL_KEYDOWN) {
+      switch(this->lastev->key.keysym.sym) {
+      case SDLK_ESCAPE: this->status = 0; break;
+      }
+    }
+  }
+  SDL_RenderClear(this->ren);
+  fight.update(this);
+  SDL_RenderPresent(this->ren);
 }

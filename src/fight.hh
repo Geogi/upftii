@@ -15,17 +15,22 @@
    You should have received a copy of the GNU General Public License
    along with UPFTII.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef UPFTII_FIGHT_H
+#define UPFTII_FIGHT_H
+
 #include <SDL2/SDL.h>
 
-#include "game.h"
+class upftii_Game;
 
-#ifndef UPFTII_FIGHT
-#define UPFTII_FIGHT
 class upftii_Fight {
   const char *leftfile = "res/left.png";
   const char *rightfile = "res/right.png";
   const char *bgfile = "res/bg.png";
- public:
+  SDL_Rect lr, rr;
+  SDL_Texture *left, *right, *bg;
+public:
   void init(upftii_Game *game);
+  void update(upftii_Game *game);
 };
+
 #endif

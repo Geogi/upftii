@@ -15,18 +15,12 @@
    You should have received a copy of the GNU General Public License
    along with UPFTII.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef UPFTII_TEXUTILS_H
+#define UPFTII_TEXUTILS_H
+
 #include <SDL2/SDL.h>
 
-#ifndef UPFTII_GAME_H
-#define UPFTII_GAME_H
-class upftii_Game {
-  const char *name = "ULTIMATE PRO FIGHTER TURBO II";
-  SDL_Window *win;
- public:
-  const int WWIDTH = 1280, WHEIGHT = 768;
-  SDL_Renderer *ren;
-  void init();
-  void finalize();
-};
+SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren);
+
 #endif
 

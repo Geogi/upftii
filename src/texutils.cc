@@ -18,7 +18,7 @@
 #include <SDL2/SDL.h>
 #include <wand/MagickWand.h>
 
-#include "texutils.h"
+#include "texutils.hh"
 
 SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren) {
   // convert filename to BMP in-memory
