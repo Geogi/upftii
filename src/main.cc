@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <png.h>
 
 /* This program is currently a test, largely helped by twinklebear.github.io's excellent tutorial
  * so thanks to him/her */
@@ -8,6 +9,11 @@ int main(int argc, char **argv){
   SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 1280, 768, SDL_WINDOW_SHOWN);
   SDL_Renderer *ren = SDL_CreateRenderer(win, -1, 
 					 SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  
+  //try to read from pngs
+  png_image *img;
+  memset(img, 0, sizeof(png_image));
+  png_image_begin_read_from_file(img, "res/left.png");
   
   SDL_Surface *sur = SDL_CreateRGBSurface(0, 200, 500, 32, 0, 0, 0, 0);
   SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, sur);
