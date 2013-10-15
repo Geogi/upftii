@@ -4,7 +4,7 @@ AC_PROG_CXX
 AX_CXX_COMPILE_STDCXX_11
 
 AC_SEARCH_LIBS([SDL_Init], [SDL2])
-AC_SEARCH_LIBS([png_image_begin_read_from_file], [png])
+PKG_CHECK_MODULES([MAGICK_WAND], [MagickWand])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile src/Makefile])
