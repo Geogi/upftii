@@ -15,22 +15,24 @@
    You should have received a copy of the GNU General Public License
    along with UPFTII.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef UPFTII_FIGHTER_H
+#define UPFTII_FIGHTER_H
+
 #include <SDL2/SDL.h>
 
-#include "fight.hh"
-#include "game.hh"
-#include "texutils.hh"
+class upftii_Fight;
 
-upftii_Fight::upftii_Fight(upftii_Game *game) {
-  this->game = game;
-  left = new upftii_Fighter(this, leftdir, true);
-  right = new upftii_Fighter(this, rightdir, false);
+class upftii_Fighter {
+  SDL_Texture *sprite;
+  SDL_Rect *pos;
+public:
+  upftii_Fighter(upftii_Fight *fight, const char *spritefile, bool onleft);
 
-  bg = png2tex(this->bgfile, game->ren);
-}
+  upftii_Fight *fight;
 
-void upftii_Fight::update() {
-  SDL_RenderCopy(game->ren, bg, NULL, NULL);
-  left->update();
-  right->update();
-}
+  void move(bool toleft);
+  void stop();
+  void update();
+};
+
+#endif

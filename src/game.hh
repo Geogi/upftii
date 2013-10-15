@@ -24,17 +24,20 @@
 
 class upftii_Game {
   const char *name = "ULTIMATE PRO FIGHTER TURBO II";
+
   SDL_Window *win;
-  SDL_Event *lastev = (SDL_Event*) malloc(sizeof(SDL_Event));
-  upftii_Fight fight;
-  int status;
+  SDL_Event *lastev;
+  bool playing;
 public:
   const int WWIDTH = 1280, WHEIGHT = 768;
+
+  upftii_Fight *fight;
   SDL_Renderer *ren;
+
   void init();
   void finalize();
   void update();
-  int quit();
+  bool isPlaying();
 };
 
 #endif

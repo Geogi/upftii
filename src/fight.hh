@@ -20,21 +20,24 @@
 
 #include <SDL2/SDL.h>
 
+#include "fighter.hh"
+
 class upftii_Game;
 
 class upftii_Fight {
-  const char *leftfile = "res/left.png";
-  const char *rightfile = "res/right.png";
+  // temporary
+  const char *leftdir = "res/left/all.png";
+  const char *rightdir = "res/right/all.png";
   const char *bgfile = "res/bg.png";
-  SDL_Texture *left, *right, *bg;
-  void (*updateCallback)(upftii_Fight*);
+
+  SDL_Texture *bg;
 public:
-  SDL_Rect lr, rr;
-  void startright();
-  void startleft();
-  void stopmove();
-  void init(upftii_Game *game);
-  void update(upftii_Game *game);
+  upftii_Fight(upftii_Game *game);
+
+  upftii_Game *game;
+  upftii_Fighter *left, *right;
+
+  void update();
 };
 
 #endif

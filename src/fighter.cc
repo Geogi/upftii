@@ -17,20 +17,33 @@
 
 #include <SDL2/SDL.h>
 
+#include "fighter.hh"
 #include "fight.hh"
-#include "game.hh"
 #include "texutils.hh"
 
-upftii_Fight::upftii_Fight(upftii_Game *game) {
-  this->game = game;
-  left = new upftii_Fighter(this, leftdir, true);
-  right = new upftii_Fighter(this, rightdir, false);
+upftii_Fighter::upftii_Fighter(upftii_Fight *fight,
+			       const char *spritefile,
+			       bool onleft) {
+  this->fight = fight;
+  // only one frame allowed
+  sprite = png2tex(spritefile, fight->game->ren);
 
-  bg = png2tex(this->bgfile, game->ren);
+  int w, h;
+  SDL_QueryTexture(sprite, NULL, NULL, &w, &h);
+  pos->x = onleft ? 50 : fight->game->WWIDTH - w - 50;
+  pos->y = fight->game->WHEIGHT - h - 100;
+  pos->w = NULL;
+  pos->h = NULL;
 }
 
-void upftii_Fight::update() {
-  SDL_RenderCopy(game->ren, bg, NULL, NULL);
-  left->update();
-  right->update();
+void upftii_Fighter::move(bool toleft) {
+  //TODO
+}
+
+void upftii_Fighter::stop() {
+  //TODO
+}
+
+void upftii_Fighter::update() {
+  SDL_RenderCopy(fight->game->ren, sprite, NULL, NULL);
 }

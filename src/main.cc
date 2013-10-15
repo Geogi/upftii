@@ -18,13 +18,13 @@
 #include "game.hh"
 
 int main(int argc, char **argv){
-  upftii_Game game;
-  game.init();
+  upftii_Game *game = new upftii_Game();
+  game->init();
 
-  while(!game.quit()) {
-    game.update();
+  while(game->isPlaying()) {
+    game->update();
   }
 
-  game.finalize();
+  game->finalize();
   return 0;
 }

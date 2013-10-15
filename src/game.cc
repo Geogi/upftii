@@ -22,46 +22,50 @@
 #include "fight.hh"
 
 void upftii_Game::init() {
-  this->status = 0;
+  playing = true;
 
   SDL_Init(SDL_INIT_EVERYTHING);
   MagickWandGenesis();
-  this->win = SDL_CreateWindow(this->name, 100, 100, this->WWIDTH, this->WHEIGHT, SDL_WINDOW_SHOWN);
-  this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);
+  win = SDL_CreateWindow(name, 100, 100, WWIDTH, WHEIGHT, SDL_WINDOW_SHOWN);
+  ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
   
-  this->fight.init(this);
+  fight = new upftii_Fight(this);
 }
 
 void upftii_Game::finalize() {
-  free(this->lastev);
   SDL_Quit();
   MagickWandTerminus();
 }
 
-int upftii_Game::quit() {
-  return this->status;
+bool upftii_Game::isPlaying() {
+  return playing;
 }
 
 void upftii_Game::update() {
-  while (SDL_PollEvent(this->lastev)) {
-    switch (this->lastev->type) {
-    case SDL_QUIT: this->status = 1; break;
+  // Events
+  while (SDL_PollEvent(lastev)) {
+    switch (lastev->type) {
+    case SDL_QUIT: playing = false; break;
     case SDL_KEYDOWN:
-      switch(this->lastev->key.keysym.sym) {
-      case SDLK_ESCAPE: this->status = 1; break;
-      case SDLK_RIGHT: this->fight.startright(); break;
-      case SDLK_LEFT: this->fight.startleft(); break;
+      switch(lastev->key.keysym.sym) {
+      case SDLK_ESCAPE: playing = false; break;
+      case SDLK_RIGHT: fight->left->move(true); break;
+      case SDLK_LEFT: fight->left->move(false); break;
       }
       break;
     case SDL_KEYUP:
-      switch(this->lastev->key.keysym.sym) {
+      switch(lastev->key.keysym.sym) {
       case SDLK_RIGHT:
-      case SDLK_LEFT: this->fight.stopmove(); break;
+      case SDLK_LEFT: fight->left->stop(); break;
       }
     }
   }
-  SDL_RenderClear(this->ren);
-  fight.update(this);
-  SDL_RenderPresent(this->ren);
+
+  // Render
+  SDL_RenderClear(ren);
+  fight->update();
+  SDL_RenderPresent(ren);
+
+  // Sleep
   SDL_Delay(1);
 }
