@@ -17,7 +17,10 @@ How to build
 If you check out the VCS directly, you need Autotools (automake, autoconf, etc).
 If you use a packaged source release, you don't.
 
-You need a C++11 compliant compiler and the SDL2 library installed.
+Requirements:
+* SDL2
+* ImageMagick
+* A C++11 compliant compiler
 
 Run:
 $ autoreconf -i   # only for a VCS clone, requires Autotools
