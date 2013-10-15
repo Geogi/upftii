@@ -63,4 +63,5 @@ void upftii_Game::update() {
   SDL_RenderClear(this->ren);
   fight.update(this);
   SDL_RenderPresent(this->ren);
+  SDL_Delay(1);
 }
