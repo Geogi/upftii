@@ -1,0 +1,55 @@
+ULTIMATE PRO FIGHTER TURBO II
+=============================
+
+This will eventually become an awesome and completely unbalanced fighting game.
+We're in version 0.0.1 right now, so do not expect anything.
+
+How to play
+-----------
+
+You can't right now, check back later.
+
+How to build
+------------
+
+*** UNIX-like
+
+If you check out the VCS directly, you need Autotools (automake, autoconf, etc).
+If you use a packaged source release, you don't.
+
+You need a C++11 compliant compiler and the SDL2 library installed.
+
+Run:
+$ autoreconf -i   # only for a VCS clone, requires Autotools
+$ ./configure
+$ make
+# make install    # or sudo make install
+
+*** Windows
+
+UPFTII uses only portable libraries so it should be possible, but I can't help you.
+
+Roadmap
+-------
+
+* 0.1: Simple scene with two facing blobs, fixed camera
+* 0.2: Adds input for moving one blob
+* 0.3: Adds controller support
+* 0.4: Adds two controllers support
+* 0.5: Adds simple moves with a 4 keys scheme
+* 0.6: Adds basic hit detection
+* 0.7: Adds sound effects support
+* 0.8: Adds music support
+* 0.9: Adds abstractions for moves (e.g. dashes, directed moves, combos)
+* 0.10: Adds life bars and win
+* 0.11: Adds BG support
+* 0.12: Adds hit feedback
+* 1.0: Sample fighters, sound effects, music and stage to make a playable (if somewhat limited) game
+* 1.x: Stuff we forgot but are needed to consider it a game
+* 2.0: Adds menus and customization (import custom fighters and stages)
+* 2.x: Iterations of the fighters/stage format and advanced fighting game stuff (e.g. damage reduction, combos limiters, scrolling camera and/or wall slam)
+* 3.0: Decentralized network support (for fighting and sharing stuff)
+
+If we actually reach that, a built-in editor (rather than a spec) would be a must.
+
+No version with centralized network is planned. If the decentralization proves too difficult, the fighting will be implemented via direct connection and the sharing via sending emails to your friends.
