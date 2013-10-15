@@ -38,12 +38,13 @@ Roadmap
 * 0.4: Adds two controllers support
 * 0.5: Adds simple moves with a 4 keys scheme
 * 0.6: Adds basic hit detection
-* 0.7: Adds sound effects support
-* 0.8: Adds music support
-* 0.9: Adds abstractions for moves (e.g. dashes, directed moves, combos)
-* 0.10: Adds life bars and win
-* 0.11: Adds BG support
-* 0.12: Adds hit feedback
+* 0.7: Adds animation support
+* 0.8: Adds sound effects support
+* 0.9: Adds music support
+* 0.10: Adds abstractions for moves (e.g. dashes, directed moves, combos)
+* 0.11: Adds life bars and win
+* 0.12: Adds BG support
+* 0.13: Adds hit feedback
 * 1.0: Sample fighters, sound effects, music and stage to make a playable (if somewhat limited) game
 * 1.x: Stuff we forgot but are needed to consider it a game
 * 2.0: Adds menus and customization (import custom fighters and stages)
