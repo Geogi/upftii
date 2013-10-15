@@ -20,7 +20,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "fight.hh"
+class upftii_Fight;
 
 class upftii_Game {
   const char *name = "ULTIMATE PRO FIGHTER TURBO II";

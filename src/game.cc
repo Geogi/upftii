@@ -20,6 +20,7 @@
 
 #include "game.hh"
 #include "fight.hh"
+#include "fighter.hh"
 
 void upftii_Game::init() {
   playing = true;

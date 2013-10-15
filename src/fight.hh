@@ -20,9 +20,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "fighter.hh"
-
 class upftii_Game;
+class upftii_Fighter;
 
 class upftii_Fight {
   // temporary

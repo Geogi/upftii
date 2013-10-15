@@ -17,8 +17,9 @@
 
 #include <SDL2/SDL.h>
 
-#include "fighter.hh"
+#include "game.hh"
 #include "fight.hh"
+#include "fighter.hh"
 #include "texutils.hh"
 
 upftii_Fighter::upftii_Fighter(upftii_Fight *fight,
