@@ -19,42 +19,39 @@
 #include <SDL2/SDL.h>
 #include <wand/MagickWand.h>
 
-void init();
-void finalize();
+#include "game.h"
+
 SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren);
 
 int main(int argc, char **argv){
-  const int WHEIGHT = 768, WWIDTH = 1280;
+  upftii_Game game;
+  game.init();
 
-  init();
-  SDL_Window *win = SDL_CreateWindow("ULTIMATE PRO FIGHTER TURBO II", 100, 100, WWIDTH, WHEIGHT, SDL_WINDOW_SHOWN);
-  SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
-
-  SDL_Texture *left = png2tex("res/left.png", ren);
-  SDL_Texture *right = png2tex("res/right.png", ren);
-  SDL_Texture *bg = png2tex("res/bg.png", ren);
+  SDL_Texture *left = png2tex("res/left.png", game.ren);
+  SDL_Texture *right = png2tex("res/right.png", game.ren);
+  SDL_Texture *bg = png2tex("res/bg.png", game.ren);
   int lh, lw, rh, rw;
   SDL_QueryTexture(left, NULL, NULL, &lw, &lh);
   SDL_QueryTexture(right, NULL, NULL, &rw, &rh);
   
   SDL_Rect lr, rr;
   lr.x = 50;
-  lr.y = WHEIGHT - lh - 100;
+  lr.y = game.WHEIGHT - lh - 100;
   lr.w = lw;
   lr.h = lh;
-  rr.x = WWIDTH - rw - 50;
-  rr.y = WHEIGHT - rh - 100;
+  rr.x = game.WWIDTH - rw - 50;
+  rr.y = game.WHEIGHT - rh - 100;
   rr.w = rw;
   rr.h = rh;
-  SDL_RenderClear(ren);
-  SDL_RenderCopy(ren, bg, NULL, NULL);
-  SDL_RenderCopy(ren, left, NULL, &lr);
-  SDL_RenderCopy(ren, right, NULL, &rr);
-  SDL_RenderPresent(ren);
+  SDL_RenderClear(game.ren);
+  SDL_RenderCopy(game.ren, bg, NULL, NULL);
+  SDL_RenderCopy(game.ren, left, NULL, &lr);
+  SDL_RenderCopy(game.ren, right, NULL, &rr);
+  SDL_RenderPresent(game.ren);
 
   SDL_Delay(2000);
 
-  finalize();
+  game.finalize();
   return 0;
 }
 
@@ -75,13 +72,4 @@ SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren) {
   SDL_FreeSurface(sur);
   
   return tex;
-}
-
-void init() {
-  SDL_Init(SDL_INIT_EVERYTHING);
-  MagickWandGenesis();
-}
-void finalize() {
-  SDL_Quit();
-  MagickWandTerminus();
 }
