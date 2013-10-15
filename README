@@ -14,7 +14,7 @@ How to build
 
 *** UNIX-like
 
-If you check out the VCS directly, you need Autotools (automake, autoconf, etc).
+If you check out the VCS directly, you need Autotools (automake, autoconf *with* autoconf archive, etc).
 If you use a packaged source release, you don't.
 
 Requirements:
