@@ -17,4 +17,8 @@
 
 #include <SDL2/SDL.h>
 
+#ifndef UPFTII_TEXUTILS_H
+#define UPFTII_TEXUTILS_H
 SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren);
+#endif
+

@@ -16,22 +16,16 @@
    along with UPFTII.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <SDL2/SDL.h>
-#include <wand/MagickWand.h>
 
 #include "game.h"
-#include "fight.h"
 
-void upftii_Game::init() {
-  SDL_Init(SDL_INIT_EVERYTHING);
-  MagickWandGenesis();
-  this->win = SDL_CreateWindow(this->name, 100, 100, this->WWIDTH, this->WHEIGHT, SDL_WINDOW_SHOWN);
-  this->ren = SDL_CreateRenderer(this->win, -1, SDL_RENDERER_ACCELERATED);
-  
-  upftii_Fight fight;
-  fight.init(this);
-}
-
-void upftii_Game::finalize() {
-  SDL_Quit();
-  MagickWandTerminus();
-}
+#ifndef UPFTII_FIGHT
+#define UPFTII_FIGHT
+class upftii_Fight {
+  const char *leftfile = "res/left.png";
+  const char *rightfile = "res/right.png";
+  const char *bgfile = "res/bg.png";
+ public:
+  void init(upftii_Game *game);
+};
+#endif
