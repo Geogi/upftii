@@ -22,7 +22,7 @@
 #include "fight.hh"
 
 void upftii_Game::init() {
-  this->status = 1;
+  this->status = 0;
 
   SDL_Init(SDL_INIT_EVERYTHING);
   MagickWandGenesis();
@@ -33,6 +33,7 @@ void upftii_Game::init() {
 }
 
 void upftii_Game::finalize() {
+  free(this->lastev);
   SDL_Quit();
   MagickWandTerminus();
 }
@@ -43,10 +44,10 @@ int upftii_Game::quit() {
 
 void upftii_Game::update() {
   while (SDL_PollEvent(this->lastev)) {
-    if (this->lastev->type == SDL_QUIT) this->status = 0;
+    if (this->lastev->type == SDL_QUIT) this->status = 1;
     if (this->lastev->type == SDL_KEYDOWN) {
       switch(this->lastev->key.keysym.sym) {
-      case SDLK_ESCAPE: this->status = 0; break;
+      case SDLK_ESCAPE: this->status = 1; break;
       }
     }
   }
