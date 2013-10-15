@@ -20,6 +20,7 @@
 #include <wand/MagickWand.h>
 
 #include "game.h"
+#include "texutils.h"
 
 SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren);
 
@@ -53,23 +54,4 @@ int main(int argc, char **argv){
 
   game.finalize();
   return 0;
-}
-
-SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren) {
-  // convert filename to BMP in-memory
-  MagickWand *wand = NewMagickWand();
-  MagickReadImage(wand, filename);
-  MagickSetImageFormat(wand, "BMP");
-  size_t buffer_size;
-  unsigned char *buffer = MagickGetImageBlob(wand, &buffer_size);
-
-  // create SDL texture from BMP and return it
-  SDL_RWops *stream = SDL_RWFromMem(buffer, buffer_size);
-  SDL_Surface *sur = SDL_LoadBMP_RW(stream, 1);
-  MagickRelinquishMemory(buffer);
-  DestroyMagickWand(wand);
-  SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, sur);
-  SDL_FreeSurface(sur);
-  
-  return tex;
 }
