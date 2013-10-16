@@ -25,9 +25,9 @@ class upftii_Fighter;
 
 class upftii_Fight {
   // temporary
-  const char *leftdir = "res/left/all.png";
-  const char *rightdir = "res/right/all.png";
-  const char *bgfile = "res/bg.png";
+  const char *leftdir = DATA_PATH "/left/all.png";
+  const char *rightdir = DATA_PATH "/right/all.png";
+  const char *bgfile = DATA_PATH "/bg.png";
 
   SDL_Texture *bg;
 public:

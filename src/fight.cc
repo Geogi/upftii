@@ -22,7 +22,9 @@
 #include "fighter.hh"
 #include "texutils.hh"
 
+#include <iostream>
 upftii_Fight::upftii_Fight(upftii_Game *game) {
+  puts(bgfile);
   this->game = game;
   left = new upftii_Fighter(this, leftdir, true);
   right = new upftii_Fighter(this, rightdir, false);
@@ -35,8 +37,6 @@ void upftii_Fight::update() {
   left->update();
   right->update();
 }
-
-#include <iostream>
 
 void upftii_Fight::updateFacing() {
   if ((right->facingleft && left->pos->x > right->pos->x) ||

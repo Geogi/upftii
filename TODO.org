@@ -41,11 +41,6 @@ acceleration which was a must).
 
 ** IMPORTANT: set program data in Autotools
 
-I've been playing with GitHub's Releases features, and it's come to my
-attention that res/ is not seen as a data folder. That makes source
-tarballs useless. Need to fix that as soon as I go back to the
-project.
-
 ** Customizable fighter speed > 1
 
 Allows to increase the delay (better for the CPU).
