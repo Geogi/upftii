@@ -20,7 +20,7 @@
 
 #include <SDL2/SDL.h>
 
-SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren);
+SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren, bool flip);
 
 #endif
 

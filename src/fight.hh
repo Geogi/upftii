@@ -37,6 +37,7 @@ public:
   upftii_Fighter *left, *right;
 
   void update();
+  void updateFacing();
 };
 
 #endif

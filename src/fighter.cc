@@ -26,16 +26,26 @@ upftii_Fighter::upftii_Fighter(upftii_Fight *fight,
 			       const char *spritefile,
 			       bool onleft) {
   this->fight = fight;
-  // only one frame allowed
-  sprite = png2tex(spritefile, fight->game->ren);
+  this->spritefile = spritefile;
+  facingleft = !onleft;
 
-  int spr_w, spr_h;
-  SDL_QueryTexture(sprite, NULL, NULL, &spr_w, &spr_h);
+  updateSprite();
+
   pos = new SDL_Rect();
-  pos->x = onleft ? 50 : fight->game->WWIDTH - spr_w - 50;
+  pos->x = onleft ? 50 : fight->game->WWIDTH - spr_w - 200;
   pos->y = fight->game->WHEIGHT - spr_h - 100;
   pos->w = spr_w;
   pos->h = spr_h;
+}
+
+void upftii_Fighter::updateSprite() {
+  sprite = png2tex(spritefile, fight->game->ren, facingleft);
+  SDL_QueryTexture(sprite, NULL, NULL, &spr_w, &spr_h);
+}
+
+void upftii_Fighter::flip() {
+  facingleft = !facingleft;
+  updateSprite();
 }
 
 void upftii_Fighter::move(bool toleft) {
@@ -49,10 +59,23 @@ void upftii_Fighter::stop() {
 
 void upftii_Fighter::update() {
   // update fighter
+  bool moved = false;
   switch(action) {
-  case MOVE_LEFT: pos->x--; break;
-  case MOVE_RIGHT: pos->x++; break;
+  case MOVE_LEFT:
+    if(pos->x > 0) {
+      pos->x--;
+      moved = true;
+    }
+    break;
+  case MOVE_RIGHT:
+    if(pos->x < fight->game->WWIDTH - spr_w) {
+      pos->x++;
+      moved = true;
+    }
+    break;
   }
+  if (moved)
+    fight->updateFacing();
 
   // render
   SDL_RenderCopy(fight->game->ren, sprite, NULL, pos);

@@ -20,10 +20,13 @@
 
 #include "texutils.hh"
 
-SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren) {
+SDL_Texture *png2tex(const char *filename, SDL_Renderer *ren,
+		     bool flip) {
   // convert filename to BMP in-memory
   MagickWand *wand = NewMagickWand();
   MagickReadImage(wand, filename);
+  if (flip)
+    MagickFlopImage(wand);
   MagickSetImageFormat(wand, "BMP");
   size_t buffer_size;
   unsigned char *buffer = MagickGetImageBlob(wand, &buffer_size);

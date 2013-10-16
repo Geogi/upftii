@@ -29,14 +29,20 @@ enum upftii_Action {
 };
 
 class upftii_Fighter {
+  const char *spritefile;
   SDL_Texture *sprite;
-  SDL_Rect *pos;
-  upftii_Action action = NONE; 
+  upftii_Action action = NONE;
+  int spr_w, spr_h;
+
+  void updateSprite();
 public:
   upftii_Fighter(upftii_Fight *fight, const char *spritefile, bool onleft);
 
   upftii_Fight *fight;
+  SDL_Rect *pos;
+  bool facingleft;
 
+  void flip();
   void move(bool toleft);
   void stop();
   void update();
