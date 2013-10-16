@@ -1,0 +1,17 @@
+* Roadmap
+
+New item on roadmap is 0.3: controller support.
+
+* Other
+
+** Customizable fighter speed > 1
+
+Allows to increase the delay (better for the CPU).
+
+** Preload textures
+
+Currently we rebuild the textures from the PNGs each time they're
+modified.  It's inefficient (whatever overhead MagickWand may add,
+it's fine as long as it's during init; now it's while playing) and
+probably introduces a mem leak (I'm not sure what happens with the
+previous SDL_Textures).
