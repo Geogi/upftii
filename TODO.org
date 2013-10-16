@@ -46,6 +46,10 @@ attention that res/ is not seen as a data folder. That makes source
 tarballs useless. Need to fix that as soon as I go back to the
 project.
 
+Now that I'm thinking about it, I should also use a better macro (or
+`sdl2-config`) for SDL2 CFLAGS and linking (currently I'm just
+searching for the SDL_Init function).
+
 ** Customizable fighter speed > 1
 
 Allows to increase the delay (better for the CPU).
