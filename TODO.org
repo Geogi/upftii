@@ -39,8 +39,6 @@ acceleration which was a must).
 
 * Other
 
-** IMPORTANT: set program data in Autotools
-
 ** Customizable fighter speed > 1
 
 Allows to increase the delay (better for the CPU).
