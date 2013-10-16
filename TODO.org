@@ -2,6 +2,41 @@
 
 New item on roadmap is 0.3: controller support.
 
+SDL2 doesn't detect my gamepad on Linux, and I don't know why. Take
+the following program:
+
+#+NAME: count_joystick_sdl1.2.c
+#+BEGIN_SRC C :includes (list '<stdio.h> '<SDL/SDL.h>) :flags -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT -L/usr/lib -lSDL -lpthread
+  SDL_Init(SDL_INIT_EVERYTHING);
+  printf("%d\n", SDL_NumJoysticks());
+#+END_SRC
+
+#+RESULTS: count_joystick_sdl1.2.c
+: 1
+
+Compile it and link it against SDL 1.2. Run it with a working gamepad
+attached (here my XBOX 360 Controller): the output is "1" (it's
+configured to be run with Org-Babel, just hit C-c C-c and confirm to
+run it).
+
+Now just change the include to <SDL2/SDL.h> and link it against SDL2
+(the part of the API used in the code hasn't changed so it's
+compatible). Run it in the same conditions: the output is "0".
+
+#+NAME: count_joystick_sdl2.c
+#+BEGIN_SRC C :includes (list '<stdio.h> '<SDL2/SDL.h>) :flags -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_REENTRANT -L/usr/lib -lSDL2 -lpthread
+  SDL_Init(SDL_INIT_EVERYTHING);
+  printf("%d\n", SDL_NumJoysticks());
+#+END_SRC
+
+#+RESULTS: count_joystick_sdl2.c
+: 0
+
+I've looked up the Internet for clues, and it seems people have it
+working on their Linux so I'm out of ideas. I could just downgrade the
+whole project to SDL 1.2 but it feels backwards (plus I'd lose 2D
+acceleration which was a must).
+
 * Other
 
 ** Customizable fighter speed > 1
@@ -15,3 +50,7 @@ modified.  It's inefficient (whatever overhead MagickWand may add,
 it's fine as long as it's during init; now it's while playing) and
 probably introduces a mem leak (I'm not sure what happens with the
 previous SDL_Textures).
+
+** Use SDL_Image instead of MagickWand
+
+It should work and that'd make one less dependency.
