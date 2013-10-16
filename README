@@ -19,7 +19,7 @@ If you use a packaged source release, you don't.
 
 Requirements:
 * SDL2
-* ImageMagick
+* ImageMagick (will go away eventually, see TODO.org)
 * A C++11 compliant compiler
 
 Run:
@@ -37,7 +37,7 @@ Roadmap
 
 * 0.1: Simple scene with two facing blobs, fixed camera
 * 0.2: Adds input for moving one blob
-* 0.3: Adds controller support
+* 0.3: Adds controller support (stuck here)
 * 0.4: Adds two controllers support
 * 0.5: Adds simple moves with a 4 keys scheme
 * 0.6: Adds basic hit detection
